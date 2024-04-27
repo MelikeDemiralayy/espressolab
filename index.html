@@ -29,5 +29,51 @@
             </div>
         </div>
     </header>
+    <div id="slider" x-data="slider" class="relative w-full h-screen overflow-hidden bg-black">
+        <template x-for="(slide, index) in slides" :key="index">
+            <figure x-show="currentIndex === index">
+                <img :src="slide" class="absolute z-0 size-full object-cover" />
+            </figure>
+        </template>
+        <button x-on:click="back()"
+            class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md ">
+            <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+    
+        <button x-on:click="next()"
+            class="absolute right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md">
+            <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('slider', () => ({
+                slides: [
+                    './images/slide-1.jpeg',
+                    './images/slide-2.jpeg',
+                    './images/slide-3.jpeg',
+                ],
+                currentIndex: 0,
+                back() {
+                    if (this.currentIndex > 0) {
+                        this.currentIndex = this.currentIndex - 1;
+                    }
+                },
+                next() {
+                    if (this.currentIndex < this.slides.length - 1) {
+                        this.currentIndex = this.currentIndex + 1;
+                    } else {
+                        this.currentIndex = 0;
+                    }
+                }
+            }))
+        });
+    </script>
 </body>
 </html>
