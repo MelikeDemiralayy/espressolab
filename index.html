@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EspressoLab</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body style="background-color: black;">
+    <header x-data="{ menuitems:[
+        { href: '#slider', title: 'ANASAYFA'},
+        { href: '#about', title: 'ESPRESSOLAB'},
+        { href: '#menu', title: 'MENÜ'},
+        { href: '#references', title: 'BAHSETMELER'},
+        { href: '#contact', title: 'İLETİŞİM'},
+    ]}" class="absolute z-50 top-0 w-full"> <!-- Alpine.js ten gelen özellik. Değişkenleri ve veri işlemlerini yönetmek için kullanılır. -->
+        <div class="container mx-auto py-4 flex flex-row items-center">
+            <a href="">
+                <img src="./images/espressolab.png" alt="EspressoLab" class="lg:w-[170px]">
+            </a>
+            <nav class="items-center justify-center flex gap-6 pl-6 ml-6 border-l border-gray-200 text-base">
+                <template x-for="(menuitem, index) in menuitems" :key="index">
+                    <a :href="menuitem.href" x-text="menuitem.title" class="font-medium text-white hover:underline"></a>
+                </template>
+            </nav>
+            <div class="ml-auto">
+                <a href="" class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow ">REZERVASYON YAP</a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
