@@ -1,79 +1,208 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EspressoLab</title>
     <script src="https://cdn.tailwindcss.com/3.4.3"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-<body style="background-color: black;">
-    <header x-data="{ menuitems:[
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <header
+      x-data="{ menuitems:[
         { href: '#slider', title: 'ANASAYFA'},
         { href: '#about', title: 'ESPRESSOLAB'},
         { href: '#menu', title: 'MENÜ'},
         { href: '#references', title: 'BAHSETMELER'},
         { href: '#contact', title: 'İLETİŞİM'},
-    ]}" class="absolute z-50 top-0 w-full"> <!-- Alpine.js ten gelen özellik. Değişkenleri ve veri işlemlerini yönetmek için kullanılır. -->
-        <div class="container mx-auto py-4 flex flex-row items-center">
-            <a href="">
-                <img src="./images/espressolab.png" alt="EspressoLab" class="lg:w-[170px]">
-            </a>
-            <nav class="items-center justify-center flex gap-6 pl-6 ml-6 border-l border-gray-200 text-base">
-                <template x-for="(menuitem, index) in menuitems" :key="index">
-                    <a :href="menuitem.href" x-text="menuitem.title" class="font-medium text-white hover:underline"></a>
-                </template>
-            </nav>
-            <div class="ml-auto">
-                <a href="" class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow ">REZERVASYON YAP</a>
-            </div>
+    ]}"
+      class="absolute z-50 top-0 w-full"
+    >
+      <!-- Alpine.js ten gelen özellik. Değişkenleri ve veri işlemlerini yönetmek için kullanılır. -->
+      <div class="container mx-auto py-4 flex flex-row items-center">
+        <a href="">
+          <img
+            src="./images/espressolab.png"
+            alt="EspressoLab"
+            class="lg:w-[170px]"
+          />
+        </a>
+        <nav
+          class="items-center justify-center flex gap-6 pl-6 ml-6 border-l border-gray-200 text-base"
+        >
+          <template x-for="(menuitem, index) in menuitems" :key="index">
+            <a
+              :href="menuitem.href"
+              x-text="menuitem.title"
+              class="font-medium text-white hover:underline"
+            ></a>
+          </template>
+        </nav>
+        <div class="ml-auto">
+          <a
+            href=""
+            class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow"
+            >REZERVASYON YAP</a
+          >
         </div>
+      </div>
     </header>
-    <div id="slider" x-data="slider" class="relative w-full h-screen overflow-hidden bg-black">
-        <template x-for="(slide, index) in slides" :key="index">
-            <figure x-show="currentIndex === index">
-                <img :src="slide" class="absolute z-0 size-full object-cover" />
-            </figure>
-        </template>
-        <button x-on:click="back()"
-            class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md ">
-            <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
-            </svg>
-        </button>
-    
-        <button x-on:click="next()"
-            class="absolute right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md">
-            <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-        </button>
+    <div
+      id="slider"
+      x-data="slider"
+      class="relative w-full h-screen overflow-hidden bg-black"
+    >
+      <template x-for="(slide, index) in slides" :key="index">
+        <figure x-show="currentIndex === index">
+          <img :src="slide" class="absolute z-0 size-full object-cover" />
+        </figure>
+      </template>
+      <button
+        x-on:click="back()"
+        class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
+      >
+        <svg
+          class="size-8 text-gray-600 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        x-on:click="next()"
+        class="absolute right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
+      >
+        <svg
+          class="size-8 text-gray-600 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <div id="about" class="p-20">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-row gap-12 items-center">
+          <div class="w-6/12">
+            <img
+              src="./images/about-us-1.jpg"
+              alt="espressolab kahve demleme görseli"
+              class="w-full rounded-lg"
+            />
+          </div>
+          <div class="w-6/12">
+            <img
+              src="./images/espressolab.png"
+              alt="espressolab"
+              class="w-[100px] brightness-0"
+            />
+            <p class="mt-6 text-gray-500">
+              Türkiye'nin en yenilikçi kahve zinciri olarak; kahve tutkunlarına
+              dünyadaki gurme kahve kültürünün değişik tatlarını sunuyoruz.
+              2014'te İstanbul Bilgi Üniversitesi'nde ilk mağazamızla
+              kapılarımızı açtığımız andan itibaren kahve tutkuları arasında
+              önemli bir hayran kitlesine sahip olduk. İyi kahveye olan
+              tutkumuzu her geçen gün daha fazla kahve severle paylaşmak için
+              çok çalışıyoruz. Global bir marka olma yolunda ilerleyen
+              şirketimizin 1 kavurma merkezi, Türkiye ve yurt dışında toplam 213
+              mağazası bulunmaktadır. 2024 yılı içerisinde mağaza sayımızı 400'e
+              çıkarmayı hedeflemekteyiz.
+            </p>
+          </div>
+        </div>
+        <div class="w-full rounded-lg bg-gray-500 my-8 p-14">
+          <h2 class="text-xl text-white font-semibold">
+            KAHVEMİZİ KENDİMİZ KAVURUYORUZ
+          </h2>
+          <p class="mt-4 text-gray-300">
+            Tanzanya, Etiyopya, Endonezya, Guatemala, Kolombiya, Brezilya ve
+            Kenya'daki yerel çiftlikleri bizzat ziyaret ediyor ve yerel
+            üreticileri destekleyen programlar geliştiriyoruz. Çiftliklerden en
+            iyi çekirdekleri seçiyor ve kahvemizi, dünyaca ünlü kahve uzmanı
+            Renato Correira danışmanlığında kahve kavurma profillerini sürekli
+            güncelleyerek kendi kavurma merkezimizde taze bir şekilde
+            kavuruyoruz. Misafirlerimize sunduğumuz kahvelerin en büyük özelliği
+            uzun stoklu olmamasıdır. Bizim için nitelikli kahve taze kahvedir.
+          </p>
+          <p class="mt-4 text-gray-300">
+            Zincir kahve markaları yurt dışından gelen ve 6 aydan hatta 1 yıldan
+            uzun süreli kahveleri piyasaya sürmektedir. Biz bunu yapmıyoruz. En
+            ileri kavurma tekniklerinin kullanıldığı üretim süreçlerine dayalı
+            en kaliteli ürünü sunarak, Nitelikli Kahve akımının Türkiye'deki en
+            başarılı temsilcilerinden biriyiz.
+          </p>
+        </div>
+        <div class="flex flex-row gap-12 items-center">
+            <div class="w-6/12">
+                <h2 class="text-3xl text-black font-bold">
+                  <span class="text-gray-500">RESPONSIBLE TOGETHER</span> HAREKETİ İLE SÜRDÜRÜLEBİLİR KAHVE
+                </h2>
+                <p class="mt-6 text-gray-500">
+                  Araştırmalara göre 2050 yılında kahve üretiminin iklim
+                  değişikliği, yanlış tarım politikaları ve üreticilerin kahvede
+                  gelecek görmemesi nedeniyle %50 oranında azalması öngörülüyor. Her
+                  gün büyük bir keyifle tükettiğimiz kahvenin iklim değişikliği
+                  karşısındaki uzun vadeli mücadelesi, sürdürülebilir tarımsal ürün
+                  olması ve geri dönüşüm projeleri gibi temel konularda, kahve
+                  sektörü içerisinde yer alan tüm markalara büyük sorumluluk
+                  düşüyor. “Future Generation Coffee” ile bu problemlerin bütününe
+                  eğilecek ve tüm kahve sektörünün katılımıyla yürütülecek yeni bir
+                  hareketi hayata geçirdik.
+                </p>
+              </div>
+          <div class="w-6/12">
+            <img
+              src="./images/about-us-2.jpg"
+              alt="sürdürülebilir kahve görseli"
+              class="w-full rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('slider', () => ({
-                slides: [
-                    './images/slide-1.jpeg',
-                    './images/slide-2.jpeg',
-                    './images/slide-3.jpeg',
-                ],
-                currentIndex: 0,
-                back() {
-                    if (this.currentIndex > 0) {
-                        this.currentIndex = this.currentIndex - 1;
-                    }
-                },
-                next() {
-                    if (this.currentIndex < this.slides.length - 1) {
-                        this.currentIndex = this.currentIndex + 1;
-                    } else {
-                        this.currentIndex = 0;
-                    }
-                }
-            }))
-        });
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("slider", () => ({
+          slides: [
+            "./images/slide-1.jpeg",
+            "./images/slide-2.jpeg",
+            "./images/slide-3.jpeg",
+          ],
+          currentIndex: 0,
+          back() {
+            if (this.currentIndex > 0) {
+              this.currentIndex = this.currentIndex - 1;
+            }
+          },
+          next() {
+            if (this.currentIndex < this.slides.length - 1) {
+              this.currentIndex = this.currentIndex + 1;
+            } else {
+              this.currentIndex = 0;
+            }
+          },
+        }));
+      });
     </script>
-</body>
+  </body>
 </html>
