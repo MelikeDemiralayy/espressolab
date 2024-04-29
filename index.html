@@ -180,6 +180,38 @@
     </div>
   </div>
   </div>
+  <div id="references" x-data="references" class="sm:py-12 md:py-16 lg:py-20">
+    <div class="container mx-auto flex flex-col sm:flex-row sm:rounded-lg overflow-hidden bg-gray-100 items-stretch">
+      <div class="relative w-full sm:w-1/2 bg-indigo-600 flex items-center py-10 sm:p-0">
+        <div class="w-64 mx-auto text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white">
+          <span class="block">Müşteriler</span>
+          <span class="block">Neler</span>
+          <span class="block">Söylüyor</span>
+        </div>
+        <div class="absolute right-2 bottom-2 block">
+          <button x-on:click="change(currentIndex - 1)"
+            class="rounded-l-full bg-gray-100 text-gray-600 font-bold w-12 h-10 hover:bg-gray-200">&#8592;</button>
+          <button x-on:click="change(currentIndex + 1)"
+            class="rounded-r-full bg-gray-100 text-gray-600 font-bold w-12 h-10 hover:bg-gray-200">&#8594;</button>
+        </div>
+      </div>
+      <div class="relative w-full sm:w-1/2 flex items-center sm:min-h-96">
+        <span class="absolute top-4 left-4 sm:top-8 sm:left-8">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            class="fill-current text-indigo-300 size-8 sm:size-12 md:size-16">
+            <path
+              d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10zM17.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L20.758 4.03c0 0-.218.052-.597.144-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162C14.219 8.33 14.02 8.778 13.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C13.535 17.474 15.338 19 17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10z" />
+          </svg>
+        </span>
+        <template x-for="(comment, index) in comments">
+          <div x-show="currentIndex==index" class="p-8 sm:p-14 z-10">
+            <p x-text="comment.message" class="text-xl text-gray-700 font-normal italic"></p>
+            <h4 x-text="comment.fullname" class="text-md font-bold text-gray-900 mt-2"></h4>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
   <script>
     document.addEventListener("alpine:init", () => {
       Alpine.data("slider", () => ({
@@ -232,6 +264,25 @@
           this.currentIndex = index;
         },
       }));
+      
+      Alpine.data('references',() => ({
+        comments: [
+          { message: 'EspressoLab, benim için kahve deneyiminin zirvesidir! Her fincan kahvesi özenle hazırlanmış ve harika bir lezzete sahip. Atmosferi de çok sıcak ve davetkâr. Her ziyaretimde keyif alıyorum.', fullname: 'John Doe' },
+          { message: 'EspressoLab, sadece kahve içmekle kalmıyor, aynı zamanda bir kahve sanatını yaşamanızı sağlıyor. Baristalar burada gerçekten birer sanatçı gibi çalışıyor ve sundukları kahveler sadece lezzetli değil, aynı zamanda görsel bir şölen.', fullname: 'Winter Doe' },
+          { message: 'EspressoLab\'in kahveleri mükemmel kalitede ve çeşitli. Her zevke uygun bir seçenek bulmak mümkün. Ayrıca, çalışanlar çok ilgili ve samimi. Buraya gelmek her zaman keyifli bir deneyim." "EspressoLab, kahve tutkunları için bir cennet! Yüksek kaliteli kahveleri, özenle seçilmiş çeşitleri ve sıcak atmosferi ile favori kahve durağım haline geldi. Kesinlikle denemelisiniz', fullname: 'John Wick' },
+        ],
+        currentIndex:0,
+        change(index){
+          var lastIndex=this.comments.length-1;
+          if(index<0){
+            this.currentIndex= lastIndex;
+          } else if(index>lastIndex){
+            this.currentIndex=0;
+          }else{
+            this.currentIndex=index;
+          }
+        }
+      }))
     });
   </script>
 </body>
