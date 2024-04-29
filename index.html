@@ -1,208 +1,239 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EspressoLab</title>
-    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-  </head>
-  <body>
-    <header
-      x-data="{ menuitems:[
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EspressoLab</title>
+  <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+  <header x-data="{ menuitems:[
         { href: '#slider', title: 'ANASAYFA'},
         { href: '#about', title: 'ESPRESSOLAB'},
         { href: '#menu', title: 'MENÜ'},
         { href: '#references', title: 'BAHSETMELER'},
         { href: '#contact', title: 'İLETİŞİM'},
-    ]}"
-      class="absolute z-50 top-0 w-full"
-    >
-      <!-- Alpine.js ten gelen özellik. Değişkenleri ve veri işlemlerini yönetmek için kullanılır. -->
-      <div class="container mx-auto py-4 flex flex-row items-center">
-        <a href="">
-          <img
-            src="./images/espressolab.png"
-            alt="EspressoLab"
-            class="lg:w-[170px]"
-          />
-        </a>
-        <nav
-          class="items-center justify-center flex gap-6 pl-6 ml-6 border-l border-gray-200 text-base"
-        >
-          <template x-for="(menuitem, index) in menuitems" :key="index">
-            <a
-              :href="menuitem.href"
-              x-text="menuitem.title"
-              class="font-medium text-white hover:underline"
-            ></a>
-          </template>
-        </nav>
-        <div class="ml-auto">
-          <a
-            href=""
-            class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow"
-            >REZERVASYON YAP</a
-          >
-        </div>
+    ]}" class="absolute z-50 top-0 w-full">
+    <!-- Alpine.js ten gelen özellik. Değişkenleri ve veri işlemlerini yönetmek için kullanılır. -->
+    <div class="container mx-auto py-4 flex flex-row items-center">
+      <a href="">
+        <img src="./images/espressolab.png" alt="EspressoLab" class="lg:w-[170px]" />
+      </a>
+      <nav class="items-center justify-center flex gap-6 pl-6 ml-6 border-l border-gray-200 text-base">
+        <template x-for="(menuitem, index) in menuitems" :key="index">
+          <a :href="menuitem.href" x-text="menuitem.title" class="font-medium text-white hover:underline"></a>
+        </template>
+      </nav>
+      <div class="ml-auto">
+        <a href="" class="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded shadow">REZERVASYON YAP</a>
       </div>
-    </header>
-    <div
-      id="slider"
-      x-data="slider"
-      class="relative w-full h-screen overflow-hidden bg-black"
-    >
-      <template x-for="(slide, index) in slides" :key="index">
-        <figure x-show="currentIndex === index">
-          <img :src="slide" class="absolute z-0 size-full object-cover" />
-        </figure>
-      </template>
-      <button
-        x-on:click="back()"
-        class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
-      >
-        <svg
-          class="size-8 text-gray-600 mx-auto"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2.5"
-            d="M15 19l-7-7 7-7"
-          ></path>
-        </svg>
-      </button>
+    </div>
+  </header>
+  <div id="slider" x-data="slider" class="relative w-full h-screen overflow-hidden bg-black">
+    <template x-for="(slide, index) in slides" :key="index">
+      <figure x-show="currentIndex === index">
+        <img :src="slide" class="absolute z-0 size-full object-cover" />
+      </figure>
+    </template>
+    <button x-on:click="back()"
+      class="absolute left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md">
+      <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
 
-      <button
-        x-on:click="next()"
-        class="absolute right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
-      >
-        <svg
-          class="size-8 text-gray-600 mx-auto"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2.5"
-            d="M9 5l7 7-7 7"
-          ></path>
-        </svg>
-      </button>
-    </div>
-    <div id="about" class="p-20">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-row gap-12 items-center">
-          <div class="w-6/12">
-            <img
-              src="./images/about-us-1.jpg"
-              alt="espressolab kahve demleme görseli"
-              class="w-full rounded-lg"
-            />
-          </div>
-          <div class="w-6/12">
-            <img
-              src="./images/espressolab.png"
-              alt="espressolab"
-              class="w-[100px] brightness-0"
-            />
-            <p class="mt-6 text-gray-500">
-              Türkiye'nin en yenilikçi kahve zinciri olarak; kahve tutkunlarına
-              dünyadaki gurme kahve kültürünün değişik tatlarını sunuyoruz.
-              2014'te İstanbul Bilgi Üniversitesi'nde ilk mağazamızla
-              kapılarımızı açtığımız andan itibaren kahve tutkuları arasında
-              önemli bir hayran kitlesine sahip olduk. İyi kahveye olan
-              tutkumuzu her geçen gün daha fazla kahve severle paylaşmak için
-              çok çalışıyoruz. Global bir marka olma yolunda ilerleyen
-              şirketimizin 1 kavurma merkezi, Türkiye ve yurt dışında toplam 213
-              mağazası bulunmaktadır. 2024 yılı içerisinde mağaza sayımızı 400'e
-              çıkarmayı hedeflemekteyiz.
-            </p>
-          </div>
+    <button x-on:click="next()"
+      class="absolute right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md">
+      <svg class="size-8 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+  <div id="about" class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-row gap-12 items-center">
+        <div class="w-6/12">
+          <img src="./images/about-us-1.jpg" alt="espressolab kahve demleme görseli" class="w-full rounded-lg" />
         </div>
-        <div class="w-full rounded-lg bg-gray-500 my-8 p-14">
-          <h2 class="text-xl text-white font-semibold">
-            KAHVEMİZİ KENDİMİZ KAVURUYORUZ
+        <div class="w-6/12">
+          <img src="./images/espressolab.png" alt="espressolab" class="w-[100px] brightness-0" />
+          <p class="mt-6 text-gray-500">
+            Türkiye'nin en yenilikçi kahve zinciri olarak; kahve tutkunlarına
+            dünyadaki gurme kahve kültürünün değişik tatlarını sunuyoruz.
+            2014'te İstanbul Bilgi Üniversitesi'nde ilk mağazamızla
+            kapılarımızı açtığımız andan itibaren kahve tutkuları arasında
+            önemli bir hayran kitlesine sahip olduk. İyi kahveye olan
+            tutkumuzu her geçen gün daha fazla kahve severle paylaşmak için
+            çok çalışıyoruz. Global bir marka olma yolunda ilerleyen
+            şirketimizin 1 kavurma merkezi, Türkiye ve yurt dışında toplam 213
+            mağazası bulunmaktadır. 2024 yılı içerisinde mağaza sayımızı 400'e
+            çıkarmayı hedeflemekteyiz.
+          </p>
+        </div>
+      </div>
+      <div class="w-full rounded-lg bg-gray-500 my-8 p-14">
+        <h2 class="text-xl text-white font-semibold">
+          KAHVEMİZİ KENDİMİZ KAVURUYORUZ
+        </h2>
+        <p class="mt-4 text-gray-300">
+          Tanzanya, Etiyopya, Endonezya, Guatemala, Kolombiya, Brezilya ve
+          Kenya'daki yerel çiftlikleri bizzat ziyaret ediyor ve yerel
+          üreticileri destekleyen programlar geliştiriyoruz. Çiftliklerden en
+          iyi çekirdekleri seçiyor ve kahvemizi, dünyaca ünlü kahve uzmanı
+          Renato Correira danışmanlığında kahve kavurma profillerini sürekli
+          güncelleyerek kendi kavurma merkezimizde taze bir şekilde
+          kavuruyoruz. Misafirlerimize sunduğumuz kahvelerin en büyük özelliği
+          uzun stoklu olmamasıdır. Bizim için nitelikli kahve taze kahvedir.
+        </p>
+        <p class="mt-4 text-gray-300">
+          Zincir kahve markaları yurt dışından gelen ve 6 aydan hatta 1 yıldan
+          uzun süreli kahveleri piyasaya sürmektedir. Biz bunu yapmıyoruz. En
+          ileri kavurma tekniklerinin kullanıldığı üretim süreçlerine dayalı
+          en kaliteli ürünü sunarak, Nitelikli Kahve akımının Türkiye'deki en
+          başarılı temsilcilerinden biriyiz.
+        </p>
+      </div>
+      <div class="flex flex-row gap-12 items-center">
+        <div class="w-6/12">
+          <h2 class="text-3xl text-black font-bold">
+            <span class="text-gray-500">RESPONSIBLE TOGETHER</span> HAREKETİ İLE SÜRDÜRÜLEBİLİR KAHVE
           </h2>
-          <p class="mt-4 text-gray-300">
-            Tanzanya, Etiyopya, Endonezya, Guatemala, Kolombiya, Brezilya ve
-            Kenya'daki yerel çiftlikleri bizzat ziyaret ediyor ve yerel
-            üreticileri destekleyen programlar geliştiriyoruz. Çiftliklerden en
-            iyi çekirdekleri seçiyor ve kahvemizi, dünyaca ünlü kahve uzmanı
-            Renato Correira danışmanlığında kahve kavurma profillerini sürekli
-            güncelleyerek kendi kavurma merkezimizde taze bir şekilde
-            kavuruyoruz. Misafirlerimize sunduğumuz kahvelerin en büyük özelliği
-            uzun stoklu olmamasıdır. Bizim için nitelikli kahve taze kahvedir.
-          </p>
-          <p class="mt-4 text-gray-300">
-            Zincir kahve markaları yurt dışından gelen ve 6 aydan hatta 1 yıldan
-            uzun süreli kahveleri piyasaya sürmektedir. Biz bunu yapmıyoruz. En
-            ileri kavurma tekniklerinin kullanıldığı üretim süreçlerine dayalı
-            en kaliteli ürünü sunarak, Nitelikli Kahve akımının Türkiye'deki en
-            başarılı temsilcilerinden biriyiz.
+          <p class="mt-6 text-gray-500">
+            Araştırmalara göre 2050 yılında kahve üretiminin iklim
+            değişikliği, yanlış tarım politikaları ve üreticilerin kahvede
+            gelecek görmemesi nedeniyle %50 oranında azalması öngörülüyor. Her
+            gün büyük bir keyifle tükettiğimiz kahvenin iklim değişikliği
+            karşısındaki uzun vadeli mücadelesi, sürdürülebilir tarımsal ürün
+            olması ve geri dönüşüm projeleri gibi temel konularda, kahve
+            sektörü içerisinde yer alan tüm markalara büyük sorumluluk
+            düşüyor. “Future Generation Coffee” ile bu problemlerin bütününe
+            eğilecek ve tüm kahve sektörünün katılımıyla yürütülecek yeni bir
+            hareketi hayata geçirdik.
           </p>
         </div>
-        <div class="flex flex-row gap-12 items-center">
-            <div class="w-6/12">
-                <h2 class="text-3xl text-black font-bold">
-                  <span class="text-gray-500">RESPONSIBLE TOGETHER</span> HAREKETİ İLE SÜRDÜRÜLEBİLİR KAHVE
-                </h2>
-                <p class="mt-6 text-gray-500">
-                  Araştırmalara göre 2050 yılında kahve üretiminin iklim
-                  değişikliği, yanlış tarım politikaları ve üreticilerin kahvede
-                  gelecek görmemesi nedeniyle %50 oranında azalması öngörülüyor. Her
-                  gün büyük bir keyifle tükettiğimiz kahvenin iklim değişikliği
-                  karşısındaki uzun vadeli mücadelesi, sürdürülebilir tarımsal ürün
-                  olması ve geri dönüşüm projeleri gibi temel konularda, kahve
-                  sektörü içerisinde yer alan tüm markalara büyük sorumluluk
-                  düşüyor. “Future Generation Coffee” ile bu problemlerin bütününe
-                  eğilecek ve tüm kahve sektörünün katılımıyla yürütülecek yeni bir
-                  hareketi hayata geçirdik.
-                </p>
-              </div>
-          <div class="w-6/12">
-            <img
-              src="./images/about-us-2.jpg"
-              alt="sürdürülebilir kahve görseli"
-              class="w-full rounded-lg"
-            />
-          </div>
+        <div class="w-6/12">
+          <img src="./images/about-us-2.jpg" alt="sürdürülebilir kahve görseli" class="w-full rounded-lg" />
         </div>
       </div>
     </div>
-    <script>
-      document.addEventListener("alpine:init", () => {
-        Alpine.data("slider", () => ({
-          slides: [
-            "./images/slide-1.jpeg",
-            "./images/slide-2.jpeg",
-            "./images/slide-3.jpeg",
-          ],
-          currentIndex: 0,
-          back() {
-            if (this.currentIndex > 0) {
-              this.currentIndex = this.currentIndex - 1;
-            }
-          },
-          next() {
-            if (this.currentIndex < this.slides.length - 1) {
-              this.currentIndex = this.currentIndex + 1;
-            } else {
-              this.currentIndex = 0;
-            }
-          },
-        }));
-      });
-    </script>
-  </body>
+  </div>
+  <div id="menu" x-data="menu" class="py-8 sm:py-12 md:py-16 lg:py-20 bg-gray-100">
+    <div class="max-w-md mx-auto mb-4 md:mb-8 flex gap-x-4 p-2 bg-white shadow-md rounded-lg"
+      x-data="{ tabs:['Yiyecekler','İçecekler','Ürünler']}">
+      <template x-for="(tab,index) in tabs" :key="index">
+        <button x-text="tab" x-on:click="change(index)" :class="{'bg-red-600 text-white':currentIndex == index}"
+          class="flex-1 py-2 px-4 rounded-md transition-all duration-300"></button>
+      </template>
+    </div>
+    <div class="container mx-auto px-4">
+      <div x-show="currentIndex == 0">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <template x-for="(food,index) in foods" :key="index">
+            <div class="bg-white w-full shadow-lg rounded-3xl p-1 max-w-[445px]">
+              <img :src="food.image" :alt="food.name" class="h-60 rounded-3xl w-full object-cover">
+              <p x-text="food.name" class="text-lg font-semibold text-gray-800 p-3 text-center"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div x-show="currentIndex==1">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <template x-for="(drink, index) in drinks">
+            <div class="bg-white w-full shadow-lg rounded-3xl p-1 max-w-[445px]">
+              <img x-bind:src="drink.image" x-bind:alt="drink.name" class="h-60 rounded-3xl w-full object-cover">
+              <p x-text="drink.name" class="text-lg font-semibold text-gray-800 p-3 text-center"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <div x-show="currentIndex==2">
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+          <template x-for="(product, index) in products">
+            <div class="bg-white w-full shadow-lg rounded-3xl p-4 max-w-[360px] lg:max-w-none lg:flex">
+              <div class="w-full lg:size-48">
+                <img x-bind:src="product.image" x-bind:alt="product.name"
+                  class="size-full rounded-3xl object-cover bg-gray-100">
+              </div>
+              <div class="flex-auto mt-4 lg:mt-0 lg:ml-4">
+                <h5 x-text="product.type" class="text-sm font-medium text-red-600"></h5>
+                <h2 x-text="product.name" class="text-lg font-medium"></h2>
+                <div class="border-t border-gray-200 mt-8 sm-12 lg:mt-16 pt-4 text-sm font-medium flex">
+                  <div class="flex-auto">
+                    <button x-text="`${product.price} ₺`"
+                      class="px-4 py-2.5 border border-gray-200 rounded-full text-black tracking-wider"></button>
+                  </div>
+                  <button
+                    class="px-4 py-2.5 border border-gray-200 rounded-full text-white tracking-wider bg-gray-800 transition hover:bg-red-600">Sepete
+                    ekle</button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+    </div>
+  </div>
+  </div>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("slider", () => ({
+        slides: [
+          "./images/slide-1.jpeg",
+          "./images/slide-2.jpeg",
+          "./images/slide-3.jpeg",
+        ],
+        currentIndex: 0,
+        back() {
+          if (this.currentIndex > 0) {
+            this.currentIndex = this.currentIndex - 1;
+          }
+        },
+        next() {
+          if (this.currentIndex < this.slides.length - 1) {
+            this.currentIndex = this.currentIndex + 1;
+          } else {
+            this.currentIndex = 0;
+          }
+        },
+      }));
+      Alpine.data('menu', () => ({
+        foods: [
+          { image: './images/foods/1.png', name: 'Portakallı Kek' },
+          { image: './images/foods/2.png', name: 'Parça Çikolata Kuki' },
+          { image: './images/foods/3.png', name: 'Peynirli Simit Sandviç' },
+          { image: './images/foods/4.jpeg', name: 'Ekşi Mayalı Hindi Fümeli Sandviç' },
+          { image: './images/foods/5.png', name: 'Mont Blanc' },
+          { image: './images/foods/6.jpeg', name: 'Lotus Cheesecake' },
+        ],
+        drinks: [
+          { image: './images/drinks/1.jpg', name: 'Spanish Latte' },
+          { image: './images/drinks/2.jpeg', name: 'Iced Caffe Latte' },
+          { image: './images/drinks/3.jpeg', name: 'Iced Lotus Latte' },
+          { image: './images/drinks/4.jpeg', name: 'Sour Green Plum Shake' },
+          { image: './images/drinks/5.jpeg', name: 'Iced Matcha Latte' },
+          { image: './images/drinks/6.jpeg', name: 'Cranberry Hibiscus' },
+        ],
+        products: [
+          { image: './images/products/1.png', type: 'Kahve', name: 'Kenya Karogoto 250 g', price: '450,00' },
+          { image: './images/products/2.png', type: 'Kahve', name: 'El Salvador El Cerro Pacas 250 g', price: '450,00' },
+          { image: './images/products/3.png', type: 'Termos', name: 'Tutacaklı Bordo Termos 480 ml', price: '825,00' },
+          { image: './images/products/4.png', type: 'Termos', name: 'Siyah Uzun Termos 480 ml', price: '825,00' },
+          { image: './images/products/5.png', type: 'Çay', name: 'Kuşburnu 50 g', price: '825,00' },
+          { image: './images/products/6.png', type: 'Çay', name: 'Winterfell Tea 50 g', price: '825,00' },
+        ],
+        currentIndex: 0,
+        change(index) {
+          this.currentIndex = index;
+        },
+      }));
+    });
+  </script>
+</body>
+
 </html>
