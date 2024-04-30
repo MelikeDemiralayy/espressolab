@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <div class="relative">
   <header x-data="{ menuitems:[
         { href: '#slider', title: 'ANASAYFA'},
         { href: '#about', title: 'ESPRESSOLAB'},
@@ -280,6 +281,68 @@
       
     </div>
   </div>
+  <div id="footer" class="absolute bottom-0 inset-x-0 bg-gray-100 py-10 z-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="md:col-span-2">
+          <h2 class="text-xl md:text-2xl font-semibold text-gray-800 max-w-lg">Yeniliklerden haberdan olmak için e-posta
+            listemize
+            kayıt olun.</h2>
+          <div class="flex flex-row mt-6">
+            <input type="email" class="px-4 py-2 text-md text-gray-700 bg-white border rounded-md"
+              placeholder="E-posta adresiniz">
+            <button class="w-auto px-6 py-2 text-sm font-medium text-white bg-gray-800 rounded-md ml-4">Abone
+              ol</button>
+          </div>
+        </div>
+        <div>
+          <h5 class="mb-3 font-semibold text-gray-800">Bağlantılar</h5>
+          <ul>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Yiyecekler</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">İçecekler</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Online Mağaza</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="mb-3 font-semibold text-gray-800">Keşfet</h5>
+          <ul>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Blog</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Kampanyalar</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Sosyal Sorumluluk</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">Kariyer</a></li>
+            <li class="mt-1"><a href="" class="text-gray-600 hover:underline">İletişim</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-gray-300 mt-10 mb-3">
+      <div class="sm:flex items-center justify-between">
+        <div class="flex gap-4">
+          <img src="https://www.svgrepo.com/show/303139/google-play-badge-logo.svg" alt="" width="130" height="110">
+          <img src="https://www.svgrepo.com/show/303128/download-on-the-app-store-apple-logo.svg" alt="" width="130"
+            height="110">
+        </div>
+        <div class="flex gap-2">
+          <a href="https://facebook.com/espressolabtr" rel="external nofollow" target="_blank">
+            <img src="https://www.svgrepo.com/show/494273/facebook-round.svg" width="30" height="30" alt="">
+          </a>
+          <a href="https://twitter.com/espressolabtr" rel="external nofollow" target="_blank">
+            <img src="https://www.svgrepo.com/show/494287/twitter-round.svg" width="30" height="30" alt="">
+          </a>
+          <a href="https://instagram.com/espressolabtr" rel="external nofollow" target="_blank">
+            <img src="https://www.svgrepo.com/show/494277/instagram-round.svg" width="30" height="30" alt="">
+          </a>
+          <a href="https://youtube.com/channel/UC0XGp1i_AZF0N93_d8mUEiA" rel="external nofollow" target="_blank">
+            <img src="https://www.svgrepo.com/show/494293/youtube-round.svg" width="30" height="30" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="copyright" class="bg-gray-200 py-8">
+    <div class="container mx-auto px-4">
+      <p class="text-center">Copyright © 2024 Espressolab. Tüm hakları saklıdır.</p>
+    </div>
+  </div>
   <script>
     document.addEventListener("alpine:init", () => {
       Alpine.data("slider", () => ({
@@ -353,6 +416,7 @@
       }))
     });
   </script>
+  </div>
 </body>
 
 </html>
